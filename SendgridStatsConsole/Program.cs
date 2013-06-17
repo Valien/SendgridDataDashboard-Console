@@ -17,10 +17,12 @@ namespace SendgridStatsConsole
             
             client.DefaultRequestHeaders.Accept.Add(
                   new MediaTypeWithQualityHeaderValue("application/json"));
-                        
+            
+            // typically your main Sengrid user account
             Console.Write("Enter API User: ");
             string apiUser = Console.ReadLine();
             Console.WriteLine();
+            // can be found under your Sendrid account settings. Also your account password. Do not hard code it here.
             Console.Write("Enter API Key: ");
             string apiKey = Console.ReadLine();
             Console.WriteLine();
@@ -28,7 +30,7 @@ namespace SendgridStatsConsole
             HttpResponseMessage response = client.GetAsync(client.BaseAddress + "api_user=" + apiUser +"&" + "api_key=" + apiKey).Result; // + "api/stats.get.json?").Result;
             if (response.IsSuccessStatusCode)
             {
-                // parse
+                // parse profile data
                 var profileData = response.Content.ReadAsAsync<IEnumerable<Profile>>().Result;
                 foreach (var s in profileData)
                 {
