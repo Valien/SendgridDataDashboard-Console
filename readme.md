@@ -1,0 +1,1 @@
+This a basic .NET implementation of the Sendgrid API for querying profile data, statistics, etc.
